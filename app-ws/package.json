@@ -1,0 +1,32 @@
+{
+  "name": "app-ws",
+  "version": "1.0.0",
+  "description": "App to see customer information",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && npx tsc",
+    "preserve": "npm run build",
+    "serve": "cross-env NODE_ENV=development nodemon app.ts",
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dimuthu Wickramanayake",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.0.1",
+    "nodemon": "^2.0.18",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.19.2",
+    "body-parser": "^1.20.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "helmet": "^5.1.0",
+    "rimraf": "^3.0.2"
+  }
+}
