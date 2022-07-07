@@ -26,9 +26,20 @@ export default function CustomerPage() {
         }).then(res => console.log(res)).catch(err => console.log(err));
     }
 
+    const handleStatusChange = (data, uuid) => {
+        alert(JSON.stringify(data));
+        editCustomerStatus(data, uuid);
+    }
+
+    const editCustomerStatus = (data, uuid) => {
+        axios.patch(server() + '/customer/' + uuid, {
+            data
+        }).then(res => console.log(res)).catch(err => console.log(err));
+    }
+
     const transformed = data.map(s => {
         return {
-            btn: <ModalButton data={s} handleUpload={handleUpload} />,
+            btn: <ModalButton data={s} handleUpload={handleUpload} handleStatusChange={handleStatusChange} />,
             name: s.firstName + ' ' + s.lastName,
             mobile: s.phoneNumber,
             address: s.addressLine1 + ', ' + s.addressLine2,
@@ -41,7 +52,7 @@ export default function CustomerPage() {
 
     return (
         <>
-            <ModalButton btnName={'Add'} handleUpload={handleUpload} />
+            <ModalButton btnName={'Add'} handleUpload={handleUpload} handleStatusChange={handleStatusChange} />
             <DataTable rowData={transformed} />
         </>
     );

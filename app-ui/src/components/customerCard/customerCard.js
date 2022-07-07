@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Dropdown, Card, Button, Row, Col } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 
+const Status = {
+    ACTIVE: "Active",
+    NONACTIVE: "Non-Active",
+    LEAD: "Lead"
+}
+
 export default function CustomerCard(props) {
-    const { data, isAdd, onSubmit } = props;
+    const { data, isAdd, onSubmit, handleStatusChange } = props;
+    const [drpVal, setDrpVal] = useState(data && data.status ? data.status : '');
+
+    useEffect(() => {
+        setDrpVal(data && data.status ? data.status : '')
+    }, [data]);
 
     const { register, handleSubmit } = useForm({
         defaultValues: {
@@ -18,6 +29,11 @@ export default function CustomerCard(props) {
             country: isAdd ? '' : data.country
         }
     });
+
+    const handleDropdownChange = val => {
+        setDrpVal(val);
+        handleStatusChange(val, data.uuid);
+    };
 
     return (<Card>
         <Card.Body>
@@ -60,14 +76,14 @@ export default function CustomerCard(props) {
                     <Col>{!isAdd &&
                         <Form.Group className="mb-3">
                             <Form.Label>Status</Form.Label>
-                            <Dropdown>
+                            <Dropdown onSelect={handleDropdownChange}>
                                 <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-                                    {data.status}
+                                    {Status[drpVal]}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu variant="dark">
-                                    <Dropdown.Item active>Another action</Dropdown.Item>
-                                    <Dropdown.Item >Another action</Dropdown.Item>
-                                    <Dropdown.Item >Something else</Dropdown.Item>
+                                    <Dropdown.Item eventKey="ACTIVE" active>Active</Dropdown.Item>
+                                    <Dropdown.Item eventKey="NONACTIVE" >Non Active</Dropdown.Item>
+                                    <Dropdown.Item eventKey="LEAD" >Lead</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Form.Group>

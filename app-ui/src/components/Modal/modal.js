@@ -4,7 +4,7 @@ import SalesOpportunity from '../salesOpportunity/salesOpportunity';
 import CustomerCard from '../customerCard/customerCard';
 
 export default function ModalPage(props) {
-    const { show, handleClose, data, handleSubmit } = props;
+    const { show, handleClose, data, handleSubmit, handleStatusChange } = props;
 
     let isAdd = false;
     if (!data) isAdd = true;
@@ -36,7 +36,7 @@ export default function ModalPage(props) {
             <Modal.Body>
                 <Row>
                     <Col>
-                        <CustomerCard data={data} isAdd={isAdd} onSubmit={onSubmit} />
+                        <CustomerCard data={data} isAdd={isAdd} onSubmit={onSubmit} handleStatusChange={handleStatusChange} />
                     </Col>
                     {!isAdd &&
                         <Col>
