@@ -25,6 +25,12 @@ export default class CustomerController {
         return updatedCustomer;
     }
 
+    updateCustomerStatus = async (status: string, uuid: string): Promise<Customer | null> => {
+        await Customer.update({ status: status}, { where: { uuid } });
+        const updatedCustomer: Customer | null = await Customer.findByPk(uuid);
+        return updatedCustomer;
+    }
+
     deleteCustomer = async (uuid: string): Promise<Customer | null> => {
         const deletedCustomer: Customer | null = await Customer.findByPk(uuid);
         await Customer.destroy({ where: { uuid } });

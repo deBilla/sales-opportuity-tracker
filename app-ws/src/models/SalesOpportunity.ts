@@ -2,9 +2,9 @@ import { Table, Model, Column, DataType, BelongsTo, ForeignKey } from "sequelize
 import { Customer } from "./Customer";
 
 enum Status {
-    NEW = "“New”",
-    CLOSEDWON = "Closed Won",
-    CLOSEDLOST = "“Closed Lost"
+    NEW = "NEW",
+    CLOSEDWON = "CLOSEDWON",
+    CLOSEDLOST = "CLOSEDLOST"
 }
 
 @Table({

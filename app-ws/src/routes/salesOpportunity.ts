@@ -23,6 +23,14 @@ router.put("/salesOpportunity/:uuid", async (req: Request, res: Response): Promi
     return res.status(200).json(updatedSalesOpportunity);
 });
 
+router.patch("/salesOpportunity/:id", async (req: Request, res: Response): Promise<Response> => {
+    const { id } = req.params;
+    console.log(req.body)
+    const status: string = req.body.data;
+    const updatedCustomer = await salesOpportunityController.updateStatus(status, id);
+    return res.status(200).json(updatedCustomer);
+});
+
 router.delete("/salesOpportunity/:uuid", async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     const deletedSalesOpportunity = await salesOpportunityController.deleteSalesOpportunity(Number(id));

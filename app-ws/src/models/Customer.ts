@@ -2,9 +2,9 @@ import { Table, Model, Column, PrimaryKey, DataType, HasMany } from "sequelize-t
 import { SalesOpportunity } from "./SalesOpportunity";
 
 export enum Status {
-    ACTIVE = "Active",
-    NONACTIVE = "Non-Active",
-    LEAD = "Lead"
+    ACTIVE = "ACTIVE",
+    NONACTIVE = "NONACTIVE",
+    LEAD = "LEAD"
 }
 
 @Table({

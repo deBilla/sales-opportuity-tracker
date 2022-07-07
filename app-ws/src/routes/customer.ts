@@ -24,6 +24,14 @@ router.put("/customer/:uuid", async (req: Request, res: Response): Promise<Respo
     return res.status(200).json(updatedCustomer);
 });
 
+router.patch("/customer/:uuid", async (req: Request, res: Response): Promise<Response> => {
+    const { uuid } = req.params;
+    console.log(req.body)
+    const status: string = req.body.data;
+    const updatedCustomer = await customerController.updateCustomerStatus(status, uuid);
+    return res.status(200).json(updatedCustomer);
+});
+
 router.delete("/customer/:uuid", async (req: Request, res: Response): Promise<Response> => {
     const { uuid } = req.params;
     const deletedCustomer = await customerController.deleteCustomer(uuid);

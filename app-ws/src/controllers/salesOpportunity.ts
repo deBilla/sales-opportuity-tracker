@@ -17,6 +17,12 @@ export default class SalesOpportunityController {
         return updatedSalesOpportunity;
     }
 
+    updateStatus = async (status: string, id: string): Promise<SalesOpportunity | null> => {
+        await SalesOpportunity.update({ status: status}, { where: { id } });
+        const updatedCustomer: SalesOpportunity | null = await SalesOpportunity.findByPk(id);
+        return updatedCustomer;
+    }
+
     deleteSalesOpportunity = async (id: number): Promise<SalesOpportunity | null> => {
         const deletedSalesOpportunity: SalesOpportunity | null = await SalesOpportunity.findByPk(id);
         await SalesOpportunity.destroy({ where: { id } });
