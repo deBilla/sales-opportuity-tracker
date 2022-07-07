@@ -10,14 +10,14 @@ In the project directory, you can run:
 
 ### `npm install`
 
-Create a .env file in this folder and put
+Create a `.env` file in this folder and put
 
-### `PORT=3001`
+`PORT=3001`
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
 
 ## Database setup - [MySQL]
 
@@ -34,11 +34,17 @@ Rest of the database opertaion automatically handled by Sequalize plugin.
 Before running the application create a `.env` file and put these values relavant to your local environment
 
 `PORT=3000`
+
 `DIALECT=mysql`
+
 `HOST=localhost`
+
 `USER_NAME=billa`
+
 `PASSWORD=billa123`
+
 `DATABASE=crm `
+
 `LOGGIN=false `
 
 In the project directory, you can run:
@@ -46,6 +52,3 @@ In the project directory, you can run:
 ### `npm install`
 
 ### `npm serve`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
