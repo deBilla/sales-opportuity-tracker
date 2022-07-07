@@ -10,6 +10,10 @@ In the project directory, you can run:
 
 ### `npm install`
 
+Create a .env file in this folder and put
+
+### `PORT=3001`
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -21,9 +25,21 @@ Setup Mysql and then create a tabe name
 
 ### `crm`
 
+Rest of the database opertaion automatically handled by Sequalize plugin.
+
 ## WS
 
 ### `cd app-ws`
+
+Before running the application create a `.env` file and put these values relavant to your local environment
+
+`PORT=3000`
+`DIALECT=mysql`
+`HOST=localhost`
+`USER_NAME=billa`
+`PASSWORD=billa123`
+`DATABASE=crm `
+`LOGGIN=false `
 
 In the project directory, you can run:
 
