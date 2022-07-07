@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
 import BusinessOpportunity from '../businessOpportunity/businessOpportunity';
 import CustomerCard from '../customerCard/customerCard';
@@ -9,9 +9,24 @@ export default function ModalPage(props) {
     let isAdd = false;
     if (!data) isAdd = true;
 
-    const list = !isAdd ? data.salesOppotunities.map(val => <BusinessOpportunity key={val.id} val={val} />) : [];
+    const [list, setList] = useState(data && data.salesOppotunities.length > 0 ? [...data.salesOppotunities] : []);
+
+    useEffect(() => {
+        setList(data && data.salesOppotunities.length > 0 ? [...data.salesOppotunities] : [])
+    }, [data]);
 
     const onSubmit = data => handleSubmit(data);
+    const addBusinessOpportunity = () => {
+        const newItem = {
+            name: "dimuthu",
+            status: "New",
+            customerUuid: data.uuid
+        }
+
+        const newItems = [...list, newItem];
+
+        setList(newItems);
+    };
 
     return (
         <Modal show={show} size="lg">
@@ -25,8 +40,17 @@ export default function ModalPage(props) {
                     </Col>
                     {!isAdd &&
                         <Col>
-                            <h3>Business Opportunities</h3>
-                            {list}
+                            <Row>
+                                <Col><h3>Sales Opportunities</h3></Col>
+                                <Col>
+                                    <Button variant="primary" onClick={addBusinessOpportunity}>
+                                        Add
+                                    </Button>
+                                </Col>
+                            </Row>
+                            {list.map((val, index) => (
+                                <BusinessOpportunity key={index} val={val} />
+                            ))}
                         </Col>
                     }
                 </Row>

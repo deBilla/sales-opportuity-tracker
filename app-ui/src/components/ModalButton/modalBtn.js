@@ -6,7 +6,10 @@ export default function ModalButton(props) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleSubmit = data => handleUpload(data);
+    const handleSubmit = data => {
+        handleUpload(data);
+        setShow(false);
+    };
 
     return (
         <>
