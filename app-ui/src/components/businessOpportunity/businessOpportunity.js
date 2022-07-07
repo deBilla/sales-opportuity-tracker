@@ -2,9 +2,9 @@ import React from 'react';
 import { Dropdown, Card } from 'react-bootstrap';
 
 export default function BusinessOpportunity(props) {
-    const { val, key } = props;
+    const { val } = props;
 
-    return (<Card key={key}>
+    return (<Card key={val.id}>
         <Card.Body>
             <Card.Title>{val.name}</Card.Title>
             <Dropdown>

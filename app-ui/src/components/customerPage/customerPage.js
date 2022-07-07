@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DataTable from '../DataTable/dataTable';
 import { useQuery } from "react-query";
 import axios from "axios";
 import ModalButton from '../ModalButton/modalBtn';
+import server from '../../config/server';
 
 export default function CustomerPage() {
-    const { isLoading, error, data, isFetching } = useQuery("repoData", () =>
-        axios.get(
-            "http://localhost:3000/customers"
+    const { isLoading, error, data } = useQuery("repoData", () =>
+        axios.get(server() + "/customers"
         ).then((res) => res.data)
     );
 
@@ -15,9 +15,20 @@ export default function CustomerPage() {
 
     if (error) return "An error has occurred: " + error.message;
 
+    const handleUpload = (data) => {
+        alert(JSON.stringify(data));
+        createCustomer(data);
+    };
+
+    const createCustomer = data => {
+        axios.post(server() + '/customer', {
+            ...data
+        }).then(res => console.log(res)).catch(err => console.log(err));
+    }
+
     const transformed = data.map(s => {
         return {
-            btn: <ModalButton data={s} />,
+            btn: <ModalButton data={s} handleUpload={handleUpload} />,
             name: s.firstName + ' ' + s.lastName,
             mobile: s.phoneNumber,
             address: s.addressLine1 + ', ' + s.addressLine2,
@@ -29,6 +40,9 @@ export default function CustomerPage() {
     })
 
     return (
-        <DataTable rowData={transformed} />
+        <>
+            <ModalButton btnName={'Add'} handleUpload={handleUpload} />
+            <DataTable rowData={transformed} />
+        </>
     );
 }

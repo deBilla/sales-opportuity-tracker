@@ -4,9 +4,14 @@ import BusinessOpportunity from '../businessOpportunity/businessOpportunity';
 import CustomerCard from '../customerCard/customerCard';
 
 export default function ModalPage(props) {
-    const { show, handleClose, data, isAdd } = props;
+    const { show, handleClose, data, handleSubmit } = props;
 
-    const list = data.salesOppotunities.map(val => <BusinessOpportunity key={val.id} val={val} />);
+    let isAdd = false;
+    if (!data) isAdd = true;
+
+    const list = !isAdd ? data.salesOppotunities.map(val => <BusinessOpportunity key={val.id} val={val} />) : [];
+
+    const onSubmit = data => handleSubmit(data);
 
     return (
         <Modal show={show} size="lg">
@@ -16,19 +21,20 @@ export default function ModalPage(props) {
             <Modal.Body>
                 <Row>
                     <Col>
-                        <CustomerCard data={data} isAdd={isAdd}/>
+                        <CustomerCard data={data} isAdd={isAdd} onSubmit={onSubmit} />
                     </Col>
-                    <Col>
-                        <h3>Business Opportunities</h3>
-                        {list}
-                    </Col>
+                    {!isAdd &&
+                        <Col>
+                            <h3>Business Opportunities</h3>
+                            {list}
+                        </Col>
+                    }
                 </Row>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary">Save</Button>
             </Modal.Footer>
         </Modal >
     );
