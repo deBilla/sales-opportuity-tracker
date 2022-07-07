@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import server from '../../config/server';
 import axios from "axios";
 
-export default function BusinessOpportunity(props) {
+export default function SalesOpportunity(props) {
     const { val } = props;
     const { register, handleSubmit } = useForm({
         defaultValues: {

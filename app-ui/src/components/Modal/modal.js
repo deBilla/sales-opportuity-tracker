@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
-import BusinessOpportunity from '../businessOpportunity/businessOpportunity';
+import SalesOpportunity from '../salesOpportunity/salesOpportunity';
 import CustomerCard from '../customerCard/customerCard';
 
 export default function ModalPage(props) {
@@ -16,7 +16,7 @@ export default function ModalPage(props) {
     }, [data]);
 
     const onSubmit = data => handleSubmit(data);
-    const addBusinessOpportunity = () => {
+    const addSalesOpportunity = () => {
         const newItem = {
             name: "dimuthu",
             status: "New",
@@ -43,13 +43,13 @@ export default function ModalPage(props) {
                             <Row>
                                 <Col><h3>Sales Opportunities</h3></Col>
                                 <Col>
-                                    <Button variant="primary" onClick={addBusinessOpportunity}>
+                                    <Button variant="primary" onClick={addSalesOpportunity}>
                                         Add
                                     </Button>
                                 </Col>
                             </Row>
                             {list.map((val, index) => (
-                                <BusinessOpportunity key={index} val={val} />
+                                <SalesOpportunity key={index} val={val} />
                             ))}
                         </Col>
                     }

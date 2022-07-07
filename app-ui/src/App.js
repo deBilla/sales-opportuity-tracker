@@ -17,6 +17,7 @@ function App() {
         <MDBRow>
           <MDBCol>
             <MDBJumbotron>
+              <h1>Customer Details</h1>
               <CustomerPage />
             </MDBJumbotron>
           </MDBCol>
