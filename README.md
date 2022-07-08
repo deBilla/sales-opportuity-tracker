@@ -23,9 +23,9 @@ Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
 
 ## Database setup - [MySQL]
 
-Setup Mysql `version 8` and then create a tabe name
+Setup Mysql `version 8` and then create a database named `crm` using the following command inside mysql
 
-### `crm`
+### `CREATE DATABASE crm`
 
 Rest of the database opertaion automatically handled by Sequalize plugin.
 
