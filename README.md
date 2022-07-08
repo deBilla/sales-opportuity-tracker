@@ -1,6 +1,8 @@
 # Getting Started with the project
 
-This project is created by Dimuthu Wickramanayake. Here there are 2 folders in this repository with UI code and WS code.
+This project is created by Dimuthu Wickramanayake. Here there are 2 folders in this repository with UI code and WS code. Before everything please install node JS in your local coumputer. Version used here is,
+
+### `v18.4.0`
 
 ## UI
 
