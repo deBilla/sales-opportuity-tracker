@@ -18,7 +18,7 @@ export default function ModalPage(props) {
     const onSubmit = data => handleSubmit(data);
     const addSalesOpportunity = () => {
         const newItem = {
-            name: "dimuthu",
+            name: "",
             status: "New",
             customerUuid: data.uuid
         }

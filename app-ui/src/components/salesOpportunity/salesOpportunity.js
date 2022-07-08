@@ -53,7 +53,7 @@ export default function SalesOpportunity(props) {
 
     return (<Form onSubmit={handleSubmit(onSubmit)}><Card key={val.id}>
         <Card.Body>
-            <Card.Title><Form.Control type="textarea" {...register("name")} /></Card.Title>
+            <Card.Title><Form.Control required readOnly={val && val.name && val.name.length > 0} type="textarea" {...register("name")} /></Card.Title>
             <Row>
                 <Col><Dropdown onSelect={handleDropdownChange}>
                     <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">

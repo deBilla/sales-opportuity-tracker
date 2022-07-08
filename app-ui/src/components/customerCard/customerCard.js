@@ -41,13 +41,13 @@ export default function CustomerCard(props) {
                 <Form.Group className="mb-3">
                     <Form.Label>Name</Form.Label>
                     <Row>
-                        <Col><Form.Control readOnly={!isAdd} type="textarea" {...register("firstName")} /></Col>
-                        <Col><Form.Control readOnly={!isAdd} type="textarea" {...register("lastName")} /></Col>
+                        <Col><Form.Control required readOnly={!isAdd} type="textarea" {...register("firstName")} /></Col>
+                        <Col><Form.Control required readOnly={!isAdd} type="textarea" {...register("lastName")} /></Col>
                     </Row>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Phone Number</Form.Label>
-                    <Form.Control readOnly={!isAdd} type="textarea" {...register("phoneNumber")} />
+                    <Form.Control required readOnly={!isAdd} type="textarea" {...register("phoneNumber")} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Address</Form.Label>
@@ -58,19 +58,19 @@ export default function CustomerCard(props) {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Postal Code</Form.Label>
-                    <Form.Control readOnly={!isAdd} type="textarea" {...register("postalCode")} />
+                    <Form.Control required readOnly={!isAdd} type="textarea" {...register("postalCode")} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>City</Form.Label>
-                    <Form.Control readOnly={!isAdd} type="textarea" {...register("city")} />
+                    <Form.Control required readOnly={!isAdd} type="textarea" {...register("city")} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>State</Form.Label>
-                    <Form.Control readOnly={!isAdd} type="textarea" {...register("state")} />
+                    <Form.Control required readOnly={!isAdd} type="textarea" {...register("state")} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Country</Form.Label>
-                    <Form.Control readOnly={!isAdd} type="textarea" {...register("country")} />
+                    <Form.Control required readOnly={!isAdd} type="textarea" {...register("country")} />
                 </Form.Group>
                 <Row>
                     <Col>{!isAdd &&
