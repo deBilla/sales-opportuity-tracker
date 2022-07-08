@@ -1,4 +1,4 @@
-import CustomerController from "../customer";
+import CustomerController from "../customerController";
 import { Customer, Status } from "../../models/Customer";
 
 const mockCustomer = {

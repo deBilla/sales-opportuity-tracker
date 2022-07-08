@@ -1,11 +1,11 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import "reflect-metadata";
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import connection from "./connectors/connection";
-import customer from "./routes/customer"
-import salesOpportunity from "./routes/salesOpportunity"
+import customer from "./routes/customerRouter"
+import salesOpportunity from "./routes/salesOpportunityRouter"
 import cors from 'cors';
 
 dotenv.config();
@@ -17,10 +17,6 @@ app.use(helmet());
 app.use(cors({credentials: true, origin: 'http://localhost:3001'}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// app.get('/', (req: Request, res: Response): Response => {
-//     return res.json({ message: "Test" });
-// });
 
 app.use('/', customer);
 app.use('/', salesOpportunity);

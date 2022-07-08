@@ -1,4 +1,4 @@
-import SalesOpportunityController from "../salesOpportunity";
+import SalesOpportunityController from "../salesOpportunityController";
 import { SalesOpportunity } from "../../models/SalesOpportunity";
 
 enum Status {
