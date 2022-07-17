@@ -77,7 +77,7 @@ You can setup the MySQL database in 2 different ways. One is to install it in th
 Setup Mysql `version 8` and then create a database named `crm` using the following command inside mysql
 
 ```
-CREATE DATABASE crm`
+CREATE DATABASE crm
 ```
 
 Rest of the database opertaion automatically handled by Sequalize plugin.
