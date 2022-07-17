@@ -3,7 +3,6 @@ version: '3.8'
 services:
   db:
     build: ./database
-    image: debilla/spidertracks-test-db
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
@@ -16,7 +15,6 @@ services:
     depends_on:
       - db
     build: ./app-ws
-    image: debilla/spidertracks-test-ws
     ports:
       - 8080:8080
     networks:
@@ -27,7 +25,6 @@ services:
     depends_on:
       - app-ws
     build: ./app-ui
-    image: debilla/spidertracks-test-ui
     ports:
       - 80:80
     networks:
