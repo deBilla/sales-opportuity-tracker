@@ -1,14 +1,16 @@
 FROM node:18.4.0-alpine
 
-WORKDIR /usr/src/app
-
+WORKDIR /app-ws
 ENV PORT 8080
+ENV DB_PORT 3306
 ENV DIALECT mysql
-ENV HOST localhost
+ENV HOST db
 ENV USER_NAME billa
 ENV PASSWORD billa123
-ENV DATABASE crm 
+ENV DATABASE crm
 ENV LOGGIN false 
+
+RUN apk update && apk add bash
 
 COPY package*.json ./
 

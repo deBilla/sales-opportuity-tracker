@@ -11,6 +11,7 @@ const DatabaseObject:any = {
     username: process.env.USER_NAME || "billa",
     password: process.env.PASSWORD || "billa123",
     database: process.env.DATABASE || "crm",
+    port: process.env.DB_PORT || 3306,
     logging: process.env.LOGGING || false
 }
 
@@ -21,6 +22,7 @@ const connection = new Sequelize({
     password: DatabaseObject.password,
     database: DatabaseObject.database,
     logging: DatabaseObject.logging,
+    port: DatabaseObject.port,
     models: [Customer, SalesOpportunity]
 });
 
