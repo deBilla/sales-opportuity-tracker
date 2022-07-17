@@ -14,18 +14,18 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use(helmet());
-app.use(cors({credentials: true, origin: 'http://localhost:3001'}))
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', customer);
-app.use('/', salesOpportunity);
+app.use('/customer', customer);
+app.use('/salesOpportunity', salesOpportunity);
 
 const start = async (): Promise<void> => {
     try {
         await connection.sync();
-        app.listen(3000, () => {
-            console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
+        app.listen(port, () => {
+            console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
         });
     } catch (error) {
         console.error(error);

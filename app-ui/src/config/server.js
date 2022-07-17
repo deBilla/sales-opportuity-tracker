@@ -2,7 +2,7 @@ export default function server() {
     let url;
     switch (process.env.NODE_ENV) {
         case 'production':
-            url = 'https://prodUrl';
+            url = 'http://localhost:8080';
             break;
         case 'development':
         default:

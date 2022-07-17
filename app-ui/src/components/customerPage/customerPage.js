@@ -5,9 +5,11 @@ import axios from "axios";
 import ModalButton from '../ModalButton/modalBtn';
 import server from '../../config/server';
 
+const CUSTOMER_URL = server() + "/customer/";
+
 export default function CustomerPage() {
     const { isLoading, error, data } = useQuery("repoData", () =>
-        axios.get(server() + "/customers"
+        axios.get(CUSTOMER_URL + "all"
         ).then((res) => res.data)
     );
 
@@ -15,25 +17,25 @@ export default function CustomerPage() {
 
     if (error) return "An error has occurred: " + error.message;
 
-    const handleUpload = (data) => {
-        alert(JSON.stringify(data));
-        createCustomer(data);
+    const handleUpload = (customer) => {
+        alert(JSON.stringify(customer));
+        createCustomer(customer);
     };
 
-    const createCustomer = data => {
-        axios.post(server() + '/customer', {
-            ...data
+    const createCustomer = customer => {
+        axios.post(CUSTOMER_URL, {
+            ...customer
         }).then(res => console.log(res)).catch(err => console.log(err));
     }
 
-    const handleStatusChange = (data, uuid) => {
-        alert(JSON.stringify(data));
-        editCustomerStatus(data, uuid);
+    const handleStatusChange = (customer, uuid) => {
+        alert(JSON.stringify(customer));
+        editCustomerStatus(customer, uuid);
     }
 
-    const editCustomerStatus = (data, uuid) => {
-        axios.patch(server() + '/customer/' + uuid, {
-            data
+    const editCustomerStatus = (customer, uuid) => {
+        axios.patch(CUSTOMER_URL + uuid, {
+            customer
         }).then(res => console.log(res)).catch(err => console.log(err));
     }
 

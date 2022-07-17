@@ -5,7 +5,7 @@ import CustomerController from '../controllers/customerController';
 const customerRouter = express.Router();
 const customerController = new CustomerController();
 
-customerRouter.post("/customer", async (req: Request, res: Response): Promise<Response> => {
+customerRouter.post("/", async (req: Request, res: Response): Promise<Response> => {
     const cutomerReqObj: Customer = req.body;
     console.log(req.body)
     const customer = await customerController.createCustomer(cutomerReqObj)
@@ -13,13 +13,13 @@ customerRouter.post("/customer", async (req: Request, res: Response): Promise<Re
     return res.status(201).json(customer);
 });
 
-customerRouter.get("/customers", async (req: Request, res: Response): Promise<Response> => {
+customerRouter.get("/all", async (req: Request, res: Response): Promise<Response> => {
     const allCustomers = await customerController.getAllCustomers()
         .catch(err => console.error(err));
     return res.status(200).json(allCustomers);
 });
 
-customerRouter.put("/customer/:uuid", async (req: Request, res: Response): Promise<Response> => {
+customerRouter.put("/:uuid", async (req: Request, res: Response): Promise<Response> => {
     const { uuid } = req.params;
     const cutomerReqObj: Customer = req.body;
     const updatedCustomer = await customerController.updateCustomer(cutomerReqObj, uuid)
@@ -27,16 +27,16 @@ customerRouter.put("/customer/:uuid", async (req: Request, res: Response): Promi
     return res.status(200).json(updatedCustomer);
 });
 
-customerRouter.patch("/customer/:uuid", async (req: Request, res: Response): Promise<Response> => {
+customerRouter.patch("/:uuid", async (req: Request, res: Response): Promise<Response> => {
     const { uuid } = req.params;
     console.log(req.body)
-    const status: string = req.body.data;
+    const status: string = req.body.customer;
     const updatedCustomer = await customerController.updateCustomerStatus(status, uuid)
         .catch(err => console.error(err));
     return res.status(200).json(updatedCustomer);
 });
 
-customerRouter.delete("/customer/:uuid", async (req: Request, res: Response): Promise<Response> => {
+customerRouter.delete("/:uuid", async (req: Request, res: Response): Promise<Response> => {
     const { uuid } = req.params;
     const deletedCustomer = await customerController.deleteCustomer(uuid)
         .catch(err => console.error(err));

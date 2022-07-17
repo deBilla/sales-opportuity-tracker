@@ -10,6 +10,8 @@ const Status = {
     CLOSEDLOST: "Closed Lost"
 }
 
+const SALES_OPPORTUNITY_URL = server() + "/salesOpportunity/";
+
 export default function SalesOpportunity(props) {
     const { val } = props;
     const [drpVal, setDrpVal] = useState(val && val.status ? val.status : '');
@@ -18,10 +20,10 @@ export default function SalesOpportunity(props) {
         setDrpVal(val && val.status ? val.status : '')
     }, [val]);
 
-    const handleDropdownChange = data => {
-        alert(data)
-        setDrpVal(data);
-        editStatus(data, val.id);
+    const handleDropdownChange = salesOpportunity => {
+        alert(salesOpportunity)
+        setDrpVal(salesOpportunity);
+        editStatus(salesOpportunity, val.id);
     };
 
     const { register, handleSubmit } = useForm({
@@ -32,24 +34,24 @@ export default function SalesOpportunity(props) {
         }
     });
 
-    const handleUpload = (data) => {
-        alert(JSON.stringify(data));
-        createSalesOpportunity(data);
+    const handleUpload = (salesOpportunity) => {
+        alert(JSON.stringify(salesOpportunity));
+        createSalesOpportunity(salesOpportunity);
     };
 
-    const createSalesOpportunity = data => {
-        axios.post(server() + '/salesOpportunity', {
-            ...data
+    const createSalesOpportunity = salesOpportunity => {
+        axios.post(SALES_OPPORTUNITY_URL, {
+            ...salesOpportunity
         }).then(res => console.log(res)).catch(err => console.log(err));
     }
 
-    const editStatus = data => {
-        axios.patch(server() + '/salesOpportunity/' + val.id, {
-            data
+    const editStatus = (salesOpportunity, id) => {
+        axios.patch(SALES_OPPORTUNITY_URL + id, {
+            salesOpportunity
         }).then(res => console.log(res)).catch(err => console.log(err));
     }
 
-    const onSubmit = data => handleUpload(data);
+    const onSubmit = salesOpportunity => handleUpload(salesOpportunity);
 
     return (<Form onSubmit={handleSubmit(onSubmit)}><Card key={val.id}>
         <Card.Body>

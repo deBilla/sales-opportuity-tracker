@@ -5,20 +5,20 @@ import SalesOpportunityController from '../controllers/salesOpportunityControlle
 const salesOpportunityRouter = express.Router();
 const salesOpportunityController = new SalesOpportunityController();
 
-salesOpportunityRouter.post("/salesOpportunity", async (req: Request, res: Response): Promise<Response> => {
+salesOpportunityRouter.post("/", async (req: Request, res: Response): Promise<Response> => {
     const salesOpportunityObj: SalesOpportunity = req.body;
     const customer = await salesOpportunityController.createSalesOpportunity(salesOpportunityObj)
         .catch(err => console.error(err));
     return res.status(201).json(customer);
 });
 
-salesOpportunityRouter.get("/salesOpportunities", async (req: Request, res: Response): Promise<Response> => {
+salesOpportunityRouter.get("/all", async (req: Request, res: Response): Promise<Response> => {
     const allSalesOpportunities = await salesOpportunityController.getAllSalesOpportunities()
         .catch(err => console.error(err));
     return res.status(200).json(allSalesOpportunities);
 });
 
-salesOpportunityRouter.put("/salesOpportunity/:uuid", async (req: Request, res: Response): Promise<Response> => {
+salesOpportunityRouter.put("/:uuid", async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     const salesOpportunityObj: SalesOpportunity = req.body;
     const updatedSalesOpportunity = await salesOpportunityController.updateSalesOpportunity(salesOpportunityObj, Number(id))
@@ -26,16 +26,16 @@ salesOpportunityRouter.put("/salesOpportunity/:uuid", async (req: Request, res: 
     return res.status(200).json(updatedSalesOpportunity);
 });
 
-salesOpportunityRouter.patch("/salesOpportunity/:id", async (req: Request, res: Response): Promise<Response> => {
+salesOpportunityRouter.patch("/:id", async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     console.log(req.body)
-    const status: string = req.body.data;
+    const status: string = req.body.salesOpportunity;
     const updatedCustomer = await salesOpportunityController.updateStatus(status, id)
         .catch(err => console.error(err));
     return res.status(200).json(updatedCustomer);
 });
 
-salesOpportunityRouter.delete("/salesOpportunity/:uuid", async (req: Request, res: Response): Promise<Response> => {
+salesOpportunityRouter.delete("/:uuid", async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     const deletedSalesOpportunity = await salesOpportunityController.deleteSalesOpportunity(Number(id))
         .catch(err => console.error(err));
