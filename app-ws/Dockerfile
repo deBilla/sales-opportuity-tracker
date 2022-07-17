@@ -8,9 +8,7 @@ ENV HOST db
 ENV USER_NAME billa
 ENV PASSWORD billa123
 ENV DATABASE crm
-ENV LOGGIN false 
-
-RUN apk update && apk add bash
+ENV LOGGIN false
 
 COPY package*.json ./
 

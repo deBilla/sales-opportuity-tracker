@@ -2,29 +2,19 @@ version: '3.8'
 
 services:
   db:
-    image: mysql
+    build: ./database
     command: --default-authentication-plugin=mysql_native_password
     restart: always
-    expose:
-      - "3306"
     ports:
-      - "3306:3306"
+      - 3306:3306
     networks:
       - backend
       - frontend
-    environment:
-      MYSQL_DATABASE: crm
-      MYSQL_ALLOW_EMPTY_PASSWORD: ok
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: billa
-      MYSQL_PASSWORD: billa123
-      MYSQL_ROOT_HOST: '%'
 
   app-ws:
     depends_on:
       - db
     build: ./app-ws
-    command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
     ports:
       - 8080:8080
     networks:
@@ -34,8 +24,7 @@ services:
   app-ui:
     depends_on:
       - app-ws
-    build:
-      context: ./app-ui
+    build: ./app-ui
     ports:
       - 80:80
     networks:
