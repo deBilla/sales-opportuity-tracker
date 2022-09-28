@@ -1,6 +1,6 @@
-# SPIDERTRACKS TEST - Customer Detail Application
+# Sales Opportunity Tracker
 
-This application is created for a test provided by `Spidertracks`. Our requirement is to provide an application that allows a company to see their customer information. Customers have the following information associated with them:
+Our requirement is to provide an application that allows a company to see their customer information. Customers have the following information associated with them:
 
 * Unique identifier.
 * Status: "Active", "Non-Active", “Lead”
@@ -154,10 +154,10 @@ This project can be run on docker containers. For this in the root folder I have
 If these dependencies are installed in your environment. You have to clone this repo.
 
 ```
-git clone git@github.com:deBilla/spidertracks-test.git
+git clone git@github.com:deBilla/sales-opportuity-tracker.git
 ```
 
-Then go to the spidertracks-test folder and run the following line
+Then go to the sales-opportuity-tracker folder and run the following line
 
 ```
 sudo docker-compose up
